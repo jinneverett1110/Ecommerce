@@ -47,6 +47,9 @@ public class Permission extends BaseEntity {
     @Column(nullable = false, length = 10)
     private HttpMethod method;
 
+    @Column(length = 100)
+    private String module;
+
     @ManyToMany(mappedBy = "permissions")
     private List<Role> roles = new ArrayList<>();
 }

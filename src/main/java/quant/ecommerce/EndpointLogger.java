@@ -54,11 +54,19 @@ public class EndpointLogger implements ApplicationRunner {
                         .name(methodStr + " " + path)
                         .path(path)
                         .method(method)
+                        .module(extractModule(path))
                         .build());
                 log.info("Added permission: {} {}", methodStr, path);
             }
         } catch (IllegalArgumentException e) {
-            // bỏ qua method không có trong enum (vd: HEAD, OPTIONS)
+            // bỏ qua method không có trong enum
         }
+    }
+
+    private String extractModule(String path) {
+        // /api/users/{id} -> "USERS"
+        // /api/auth/login -> "AUTH"
+        String[] parts = path.split("/");
+        return parts.length > 2 ? parts[2].toUpperCase() : "OTHER";
     }
 }
