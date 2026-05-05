@@ -9,6 +9,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+import org.springframework.http.HttpMethod;
 import quant.ecommerce.entity.common.BaseEntity;
 
 @Entity
@@ -33,7 +34,7 @@ public class Permission extends BaseEntity {
     private String name;
 
     @Column(columnDefinition = "TEXT")
-    private String description;
+    private String description="";
 
     @Column(nullable = false, length = 255)
     @NotBlank
@@ -41,5 +42,5 @@ public class Permission extends BaseEntity {
 
     @Column(nullable = false, length = 10)
     @NotBlank
-    private String method; // vd: "GET", "POST", "PUT", "DELETE"
+    private HttpMethod method; // vd: "GET", "POST", "PUT", "DELETE"
 }

@@ -9,6 +9,11 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+import quant.ecommerce.entity.catalog.BrandTranslation;
+import quant.ecommerce.entity.catalog.CategoryTranslation;
+import quant.ecommerce.entity.product.ProductTranslation;
+
+import java.util.List;
 
 @Entity
 @Table(name = "languages", indexes = {
@@ -29,4 +34,15 @@ public class Language extends BaseEntity {
     @NotBlank
     private String name;
 
+    @OneToMany(mappedBy = "language")
+    private List<BrandTranslation> brandTranslations;
+
+    @OneToMany(mappedBy = "language")
+    private List<Usertranslation> usertranslations;
+
+    @OneToMany(mappedBy = "language")
+    private List<CategoryTranslation> categoryTranslations;
+
+    @OneToMany(mappedBy = "language")
+    private List<ProductTranslation> productTranslations;
 }
